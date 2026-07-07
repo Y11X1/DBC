@@ -1,0 +1,209 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Chassis ICAN Remote iECU VCU DBS EPS
+VAL_TABLE_ SetUP 1 "有效" 0 "无效" ;
+VAL_TABLE_ Set_Speed 1 "人工模式0-30km/h" 0 "人工模式0-80km/h" ;
+VAL_TABLE_ iECU_Mode 1 "运营模式" 0 "调试模式" ;
+VAL_TABLE_ iECU_Turn_Light 2 "右转灯亮" 1 "左转灯亮" 0 "关" ;
+VAL_TABLE_ Vehicle_Gear 3 "D挡" 2 "N挡" 1 "R挡" ;
+VAL_TABLE_ IECU_Light 3 "远光灯" 2 "近光灯" 1 "小灯" 0 "关" ;
+VAL_TABLE_ ICAN_State 15 "正常工作" ;
+VAL_TABLE_ VCU_DBS_Request_Flag 1 "value" 0 "invalue" ;
+VAL_TABLE_ IECU_Flag 1 "valid" 0 "invalid" ;
+VAL_TABLE_ IECU_Gear 0 "空挡" 2 "后退挡" 1 "前进挡" ;
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ iECU_Turn_Light : 0|4@1+ (1,0) [0|2] "" Vector__XXX
+ SG_ iECU_Light : 0|3@1+ (1,0) [0|3] "N/A" Vector__XXX
+ SG_ iECU_BrakePressure_Cmd : 0|14@1+ (0.1,0) [0|8] "Mpa" Vector__XXX
+ SG_ iECU_Tire_Angle_Cmd : 0|16@1+ (0.1,-30) [-30|30] "deg" Vector__XXX
+ SG_ iECU_Gear_Request : 0|8@1+ (1,0) [0|2] "N/A" Vector__XXX
+
+BO_ 770 Vehicle_Status_1: 8 Vector__XXX
+ SG_ MCU_Spd : 48|15@1+ (1,-16384) [-16384|16383] "rpm" Vector__XXX
+ SG_ MCU_Pow : 36|11@1+ (0.1,-102) [-102|101] "kw" Vector__XXX
+ SG_ BMS_SOC : 28|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ BMS_Curr : 13|15@1+ (0.1,-1000) [-1000|1000] "A" Vector__XXX
+ SG_ BMS_Vol : 0|13@1+ (0.1,0) [0|500] "V" Vector__XXX
+
+BO_ 771 Vehicle_Status_2: 8 Vector__XXX
+ SG_ BMS_MinTemp : 56|8@1+ (1,-50) [-50|205] "℃" Vector__XXX
+ SG_ BMS_MaxTemp : 48|8@1+ (1,-50) [-50|205] "℃" Vector__XXX
+ SG_ BMS_AvgTemp : 40|8@1+ (1,-50) [-50|205] "℃" Vector__XXX
+ SG_ MCU_Vol : 24|10@1+ (1,0) [0|1021] "V" Vector__XXX
+ SG_ MCU_Cur : 8|11@1+ (1,-1023) [-1023|1022] "A" Vector__XXX
+ SG_ MCU_Temp : 0|8@1+ (1,-40) [-40|213] "℃" Vector__XXX
+
+BO_ 385 ICAN_State: 1 ICAN
+ SG_ ICAN_State : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 773 Wheel_Speed: 8 Chassis
+ SG_ RR_Speed : 48|16@1+ (1,0) [0|100] "km/h"  VCU
+ SG_ RL_Speed : 32|16@1+ (1,0) [0|100] "km/h"  VCU
+ SG_ FR_Speed : 16|16@1+ (1,0) [0|100] "km/h"  VCU
+ SG_ FL_Speed : 0|16@1+ (1,0) [0|100] "km/h"  VCU
+
+BO_ 513 ICAN_Model: 8 VCU
+ SG_ V_Reseved2 : 48|16@1- (0.00244,0) [0|5] "v"  ICAN
+ SG_ V_OUT2 : 32|16@1- (0.00244,0) [0|5] "V"  ICAN
+ SG_ V_Reseved1 : 16|16@1- (0.00244,0) [0|5] "V"  ICAN
+ SG_ V_OUT0 : 0|16@1- (0.00244,0) [0|5] "V"  ICAN
+
+BO_ 0 ICAN_FLAG: 2 VCU
+ SG_ ICAN_ID : 8|8@1+ (1,0) [0|1] ""  ICAN
+ SG_ ICAN_Command_word : 0|8@1+ (1,0) [0|1] ""  ICAN
+
+BO_ 268 iECU: 8 iECU
+ SG_ iECU_Acc_Cmd : 46|18@1+ (0.01,0) [0|100] "%" Vector__XXX
+ SG_ iECU_Control_Request_Flag : 0|1@1+ (1,0) [0|1] "N/A" Vector__XXX
+
+BO_ 772 VCU_Vehicle_Status: 8 Vector__XXX
+ SG_ WireAcc_Pedal_Pos : 40|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ OriginalAcc_PedalPos : 32|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ BrakPedal_Status : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Vehicle_Gear : 48|16@1+ (1,0) [0|100] "" Vector__XXX
+ SG_ Vehicle_Torque : 16|12@1+ (0.25,-511) [-511|512.75] "Nm" Vector__XXX
+ SG_ Vehicle_Speed : 0|16@1+ (0.1,-80) [0|100] "km/h" Vector__XXX
+
+BO_ 769 VCU_Vehicle_Diagnosis: 8 Vector__XXX
+ SG_ iECU_State : 32|8@1+ (1,0) [0|1] "N/A" Vector__XXX
+ SG_ ICAN_Status : 40|24@1+ (1,0) [0|1] "N/A" Vector__XXX
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 3221225472 iECU_Turn_Light "0关，1左转灯量，2右转灯量";
+CM_ SG_ 3221225472 iECU_Light "0灯光关
+1小灯
+2近光灯
+3远光灯";
+CM_ SG_ 3221225472 iECU_BrakePressure_Cmd "0-8Mpa压力请求
+";
+CM_ SG_ 3221225472 iECU_Tire_Angle_Cmd "-30到+30度前轮转角
+";
+CM_ SG_ 3221225472 iECU_Gear_Request "0表示空挡；
+1表示前进挡；
+2表示后退档。";
+CM_ SG_ 770 MCU_Spd "电机转速";
+CM_ SG_ 770 MCU_Pow "电机功率";
+CM_ SG_ 770 BMS_SOC "电池电量SOC";
+CM_ SG_ 770 BMS_Curr "电池电流";
+CM_ SG_ 770 BMS_Vol "电池电压";
+CM_ SG_ 771 BMS_MinTemp "电池组最低温度";
+CM_ SG_ 771 BMS_MaxTemp "电池组最高温度";
+CM_ SG_ 771 BMS_AvgTemp "电池组平均温度";
+CM_ SG_ 771 MCU_Vol "电机电压";
+CM_ SG_ 771 MCU_Cur "电机电流";
+CM_ SG_ 771 MCU_Temp "电机温度";
+CM_ BO_ 385 "ICAN-4404设备（模拟油门踏板 输出0-5v）正常工作有181，且报文为0F
+未出现181说明ICAN-4404设备未工作
+";
+CM_ SG_ 385 ICAN_State "0x0F 正常工作";
+CM_ BO_ 773 "四轮转速反馈";
+CM_ SG_ 773 RR_Speed "RR轮转速反馈";
+CM_ SG_ 773 RL_Speed "RL轮转速反馈";
+CM_ SG_ 773 FR_Speed "FR轮转速反馈";
+CM_ SG_ 773 FL_Speed "FL轮转速反馈";
+CM_ BO_ 513 "ican-4404输出模拟电压量";
+CM_ SG_ 513 V_Reseved2 "保留";
+CM_ SG_ 513 V_OUT2 "通道1输出的模拟电压量";
+CM_ SG_ 513 V_Reseved1 "保留
+";
+CM_ SG_ 513 V_OUT0 "通道0输出的模拟电压量";
+CM_ BO_ 0 "唤醒ican-4404模块";
+CM_ SG_ 0 ICAN_ID "ican-4404模块id，固定设置为1";
+CM_ SG_ 0 ICAN_Command_word "1有效，0无效";
+CM_ SG_ 268 iECU_Acc_Cmd "油门开度请求0-100%
+";
+CM_ SG_ 268 iECU_Control_Request_Flag "0表示无效，1表示有效
+该消息由iECU节点发出，接收端为VCU";
+CM_ SG_ 772 WireAcc_Pedal_Pos "线控油门踏板百分比反馈";
+CM_ SG_ 772 OriginalAcc_PedalPos "原车油门踏板百分比";
+CM_ SG_ 772 BrakPedal_Status "制动踏板踩下标志位";
+CM_ SG_ 772 Vehicle_Gear "车辆挡位状态反馈
+3 P档
+2 R挡
+1 D挡
+0 N档";
+CM_ SG_ 772 Vehicle_Torque "车辆扭矩反馈";
+CM_ SG_ 772 Vehicle_Speed "车辆实时车速";
+CM_ SG_ 769 iECU_State "0表示无故障，1表示信号丢失";
+CM_ SG_ 769 ICAN_Status "0表示ican4404设备正常，1表示未正常工作";
+BA_DEF_ BO_  "turn_light" INT 0 2;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "turn_light" 1;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_ "DBName" "WLHG";
+BA_ "GenSigInactiveValue" SG_ 3221225472 iECU_Turn_Light 20;
+BA_ "GenSigInactiveValue" SG_ 3221225472 iECU_Light 20;
+BA_ "GenSigInactiveValue" SG_ 3221225472 iECU_BrakePressure_Cmd 20;
+BA_ "GenSigInactiveValue" SG_ 3221225472 iECU_Tire_Angle_Cmd 20;
+BA_ "GenSigInactiveValue" SG_ 3221225472 iECU_Gear_Request 20;
+BA_ "GenSigInactiveValue" SG_ 773 RR_Speed 50;
+BA_ "GenSigInactiveValue" SG_ 773 RL_Speed 50;
+BA_ "GenSigInactiveValue" SG_ 773 FR_Speed 50;
+BA_ "GenSigInactiveValue" SG_ 773 FL_Speed 50;
+BA_ "GenSigInactiveValue" SG_ 513 V_Reseved2 20;
+BA_ "GenSigInactiveValue" SG_ 513 V_OUT2 20;
+BA_ "GenSigInactiveValue" SG_ 513 V_Reseved1 20;
+BA_ "GenSigInactiveValue" SG_ 513 V_OUT0 20;
+BA_ "GenSigInactiveValue" SG_ 268 iECU_Acc_Cmd 20;
+BA_ "GenSigInactiveValue" SG_ 268 iECU_Control_Request_Flag 20;
+BA_ "GenSigInactiveValue" SG_ 772 BrakPedal_Status 50;
+BA_ "GenSigInactiveValue" SG_ 772 Vehicle_Gear 50;
+BA_ "GenSigInactiveValue" SG_ 772 Vehicle_Torque 50;
+BA_ "GenSigInactiveValue" SG_ 772 Vehicle_Speed 50;
+BA_ "GenSigInactiveValue" SG_ 769 iECU_State 50;
+BA_ "GenSigInactiveValue" SG_ 769 ICAN_Status 50;
+VAL_ 3221225472 iECU_Turn_Light 3 "双闪灯亮" 2 "右转灯亮" 1 "左转灯亮" 0 "关" ;
+VAL_ 3221225472 iECU_Gear_Request 0 "空挡" 2 "后退挡" 1 "前进挡" ;
+VAL_ 385 ICAN_State 15 "正常工作" ;
+VAL_ 268 iECU_Control_Request_Flag 1 "valid" 0 "invalid" ;
+VAL_ 772 Vehicle_Gear 0 "N档" 1 "D挡" 2 "R挡" 3 "P挡" ;
+
